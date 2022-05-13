@@ -22,6 +22,7 @@ module.exports = async (hre) => {
     const {isProd, isHardhat} = chainTypeById(chainId);
     const alchemyTimeout = isHardhat ? 0 : (isProd ? 10 : 1);
     const lendingPoolProviderV2 = presets.Aave.v2.lendingPoolProvider[chainId];
+    log(`CHAIN ID = ${chainId}`);
 
 
     log('\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');

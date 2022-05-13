@@ -75,6 +75,10 @@ module.exports = async (hre) => {
 
     const nftReceiver = user5;
 
+    log(`deployer, initialMinter, user1, user2, user3, user4, user5: ${deployer, initialMinter, user1, user2, user3, user4, user5}`);
+    log(`nftReceiver: ${nftReceiver}`);
+    
+
     log('\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
     log('Charged Particles: Mint Proton & Lepton Tokens ');
     log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n');

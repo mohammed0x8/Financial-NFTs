@@ -15,7 +15,7 @@ require('solidity-coverage');
 require('hardhat-deploy-ethers');
 require('hardhat-deploy');
 require("hardhat-watcher");
-
+require('hardhat-contract-sizer');
 
 // This must occur after hardhat-deploy!
 task(TASK_COMPILE_GET_COMPILER_INPUT).setAction(async (_, __, runSuper) => {
@@ -218,6 +218,7 @@ module.exports = {
         user3: {
           default: 5,
         },
+        user5: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
         trustedForwarder: {
           default: 7, // Account 8
           1: '0x1337c0d31337c0D31337C0d31337c0d31337C0d3', // mainnet

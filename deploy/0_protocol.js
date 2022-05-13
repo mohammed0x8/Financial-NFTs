@@ -20,6 +20,7 @@ module.exports = async (hre) => {
     const deployData = {};
 
     const chainId = chainIdByName(network.name);
+    log(`NETWORK NAME: ${network.name} --------`)
     const {isProd, isHardhat} = chainTypeById(chainId);
     const alchemyTimeout = isHardhat ? 0 : (isProd ? 5 : 3);
 

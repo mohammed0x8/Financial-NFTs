@@ -31,7 +31,8 @@ const _WHITELISTED_CONTRACTS = {
   '137': [
     "0x4ed360c8725d3a63f564f8484a582d0a7cecea7a",
     "0xe2a9b15e283456894246499fb912cce717f83319",
-  ]
+  ],
+  '31337': []
 };
 
 
