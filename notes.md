@@ -43,3 +43,6 @@ GenericSmartBasket
 - both smartwalletmanager and AaveWalletManager extend WalletManagerBase
 
 - what is the referralCode in the deposit function on the AaveSmartWallet ??
+
+- what is a 'kinetic' charge?
+    - I know 'charge' is aave token interest
