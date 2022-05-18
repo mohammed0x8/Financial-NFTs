@@ -32,3 +32,5 @@ artifacts
 test-results.xml
 yarn-error.log
 .openzeppelin/unknown-31337.json
+
+*.pyc
