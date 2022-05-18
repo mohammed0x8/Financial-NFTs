@@ -201,10 +201,12 @@ module.exports = {
     namedAccounts: {
         deployer: {
           default: 0,
+          42: '0xb9aAfbc209000A237ef4E52caEB598CF2f3EA4EA', // kovan account 1
         },
         protocolOwner: {
           default: 1,
           1: '0x0Ca678b984186b0117501C00d4A6B4F8F342D06D', // IONX Gnosis Multisig
+          42: '0xBe376c5e625Df9f4D34e72e139c5b0eAa8FeDCfe', // kovan account 2
         },
         initialMinter: {
           default: 2,
