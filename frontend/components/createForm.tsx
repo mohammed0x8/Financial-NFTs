@@ -44,11 +44,11 @@ const CreateForm = (props: Props) => {
         }
         const file = e.target.files[0];
         try {
-            const url = await uploadImageToIPFS(file);
-            setFileUrl(url);
-            // setFileUrl(
-            //     'https://ipfs.infura.io/ipfs/QmQVDpasygPGJ6dQZzCzzFvDZoPgPbprSfp6pyhkZLr8DL',
-            // );
+            // const url = await uploadImageToIPFS(file);
+            // setFileUrl(url);
+            setFileUrl(
+                'https://ipfs.infura.io/ipfs/QmSKCYdovA7z7RGi7XGNwLouLEnMkBmQzb7GEUgYs8fPc1',
+            );
         } catch (error) {
             console.log(`Error uploading file: ${error}`);
         }

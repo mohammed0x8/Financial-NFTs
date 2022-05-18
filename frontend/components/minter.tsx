@@ -1,9 +1,8 @@
-import Header from './header';
 import { Box, Container, Text, Input, Button, Flex } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import CreateForm from './createForm';
 
-type Props = {
-    children: React.ReactNode
+interface Props {
 }
 
 const Minter = (props: Props) => {
@@ -12,8 +11,7 @@ const Minter = (props: Props) => {
     return (
         <Box>
             <Text>Mint Proton NFT</Text>
-            <Input placeholder="name" value={name} onChange={(e: any) => setName(e.target.value)} size="sm"></Input>
-            <Input placeholder="description" value={description} onChange={(e: any) => setDescription(e.target.value)} size="sm"></Input>
+            <CreateForm />
         </Box>
     )
 }
