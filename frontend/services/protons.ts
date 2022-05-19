@@ -3,7 +3,7 @@ import { ethers } from 'ethers';
 
 const PROTON_ADDRESS = process.env.NEXT_PUBLIC_PROTON_ADDRESS || "";
 
-export const getProtonTokenURIs = async (provider: any) => {
+export const getProtonTokens = async (provider: any) => {
     console.log('get protons ', provider);
 
     const protonContract = new ethers.Contract(PROTON_ADDRESS, Proton.abi, provider);
@@ -13,11 +13,13 @@ export const getProtonTokenURIs = async (provider: any) => {
     const tokenURIs = [];
     console.log(`totalSupply: ${totalSupply}`)
 
+    const tokenIds = [];
     for(let i = 0; i < totalSupply; i++) {
         const tokenId = await protonContract.tokenByIndex(i);
+        tokenIds.push(tokenId)
         console.log(`tokenId: ${tokenId} index: ${i}`)
         tokenURIs.push(await protonContract.tokenURI(tokenId));
     }
 
-    return tokenURIs;
+    return [tokenURIs, tokenIds];
 }

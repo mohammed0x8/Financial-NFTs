@@ -10,7 +10,7 @@ const Minter = (props: Props) => {
     const [description, setDescription] = useState<string>("");
     return (
         <Box>
-            <Text>Mint Proton NFT</Text>
+            <Text align="center" fontSize="5xl" mb="12">Mint Proton NFT</Text>
             <CreateForm />
         </Box>
     )

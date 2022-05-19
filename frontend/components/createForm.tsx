@@ -26,7 +26,6 @@ const CreateForm = (props: Props) => {
 
         if (web3.account && web3.library && description && fileUrl && price) {
             createProton(web3.account, web3.library, name, description, fileUrl, price);
-
         } else {
             console.error('Error: could not make post', web3.account, web3.library, description, fileUrl, price)
         }
@@ -44,11 +43,11 @@ const CreateForm = (props: Props) => {
         }
         const file = e.target.files[0];
         try {
-            // const url = await uploadImageToIPFS(file);
-            // setFileUrl(url);
-            setFileUrl(
-                'https://ipfs.infura.io/ipfs/QmSKCYdovA7z7RGi7XGNwLouLEnMkBmQzb7GEUgYs8fPc1',
-            );
+            const url = await uploadImageToIPFS(file);
+            setFileUrl(url);
+            // setFileUrl(
+            //     'https://ipfs.infura.io/ipfs/QmSKCYdovA7z7RGi7XGNwLouLEnMkBmQzb7GEUgYs8fPc1',
+            // );
         } catch (error) {
             console.log(`Error uploading file: ${error}`);
         }
@@ -69,9 +68,9 @@ const CreateForm = (props: Props) => {
         <>
             <Center>
                 <Box
-                    borderColor="brand.gradienta"
-                    bg={'brand.gradienta'}
-                    maxW="lg"
+                    borderColor="brand.300"
+                    bg={'brand.600'}
+                    width="460px"
                     p={4}
                     borderWidth="1px"
                     borderRadius="lg"
@@ -79,7 +78,7 @@ const CreateForm = (props: Props) => {
                 >
                     <Flex direction="column">
                         <Box
-                            borderColor="brand.darkslategray"
+                            borderColor="gray.400"
                             mb={4}
                             h="300px"
                             borderWidth="1px"
@@ -88,27 +87,41 @@ const CreateForm = (props: Props) => {
                         >
                             {renderImage()}
                         </Box>
-                        <Input placeholder="name" value={name} onChange={(e: any) => setName(e.target.value)} size="sm"></Input>
+                        <Input 
+                            bg="gray.100"
+                            placeholder="name"
+                            value={name}
+                            onChange={(e: any) => setName(e.target.value)}
+                            size="sm"
+                            borderColor="gray.400"
+                            mb="6"
+                            borderRadius="6"
+                            p="4"
+                        ></Input>
                         <Textarea
                             mb={4}
                             value={description}
                             onChange={(e) =>
                                 setDescription(e.target.value)
                             }
-                            placeholder="NFT description"
+                            placeholder="description"
                             size="sm"
-                            borderColor="brand.darkslategray"
-                            bg="brand.darkslategray"
+                            borderColor="gray.400"
+                            bg="gray.100"
+                            borderRadius="6"
+                            p="4"
                         />
                         <Box mb={4}>
                             <Input
-                                borderColor="brand.darkslategray"
+                                borderColor="gray.400"
+                                borderRadius="6"
                                 w="100px"
-                                placeholder="ETH price"
+                                placeholder="price"
                                 onChange={(e) =>
                                     setPrice(e.target.value)
                                 }
-                                bg="brand.darkslategray"
+                                bg="gray.100"
+                                p="4"
                             />
                         </Box>
                         <Box mb={4}>
@@ -118,7 +131,7 @@ const CreateForm = (props: Props) => {
                                 className="CreateForm__img"
                                 onChange={handleImageUpload}
                                 style={{
-                                    backgroundColor: "brand.darkslategray"
+                                    backgroundColor: "gray.400"
                                 }}
                             />
                         </Box>

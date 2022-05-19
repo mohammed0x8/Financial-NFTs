@@ -1,9 +1,19 @@
+:root {
+  /* CSS HEX */
+  --french-violet: #6f2dbdff;
+  --amethyst: #a663ccff;
+  --wisteria: #b298dcff;
+  --light-steel-blue: #b8d0ebff;
+  --celeste: #b9faf8ff;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: var(--light-steel-blue);
 }
 
 a {

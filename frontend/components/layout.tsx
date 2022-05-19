@@ -8,7 +8,7 @@ type Props = {
 
 const Layout = (props: Props) => {
     return (
-        <Box>
+        <Box bg={'brand.500'}>
             <Header />
             <Box mb={48}>
                 {props.children}
