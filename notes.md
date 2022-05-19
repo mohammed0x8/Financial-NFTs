@@ -1382,3 +1382,20 @@ Transaction etherscan: https://hardhat.etherscan.io/tx/0xdb689e05e6a06e4021b1e11
   To:                  0x7a2088a1bfc9d81c55368ae168c2c02570cb814f
 
 
+
+
+"{
+  "code": -32603,
+  "message": "Internal JSON-RPC error.",
+  "data": {
+    "code": -32603,
+    "message": "Error: VM Exception while processing transaction: revert CP:E-417"
+  },
+  "stack": "Error: Internal JSON-RPC error.\n    at new i (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/common-0.js:1:184008)\n    at s (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/common-0.js:1:179620)\n    at Object.internal (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/common-0.js:1:180230)\n    at c (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/background-1.js:1:110035)\n    at chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/background-1.js:1:111067\n    at async chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/common-0.js:18:164413"
+}
+  at new i (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/common-0.js:1:184008)
+  at s (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/common-0.js:1:179620)
+  at Object.internal (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/common-0.js:1:180230)
+  at c (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/background-1.js:1:110035)
+  at chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/background-1.js:1:111067
+  at async chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/common-0.js:18:164413"
