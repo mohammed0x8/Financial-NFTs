@@ -36,7 +36,13 @@ task(
     return runSuper({...args, noCompile: true});
   }
 );
+task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
+  const accounts = await hre.ethers.getSigners();
 
+  for (const account of accounts) {
+    console.log(account.address);
+  }
+});
 
 const mnemonic = {
   testnet: `${process.env.TESTNET_MNEMONIC}`.replace(/_/g, ' '),
@@ -87,6 +93,7 @@ module.exports = {
                 blockNumber: 11400000,  // MUST be after Aave V2 was deployed
                 timeout: 1000000
             },
+            chainId: 31337,
         },
         kovan: {
             // url: `https://kovan.infura.io/v3/${process.env.INFURA_APIKEY}`,
@@ -100,10 +107,13 @@ module.exports = {
             }
         },
         mumbai: {
-            url: `https://rpc-mumbai.matic.today`,
+            url: `https://rpc-mumbai.maticvigil.com/v1/${process.env.MUMBAI_KEY}`,
+            // url: "https://rpc.maticvigil.com/",
+            // url: `https://rpc-mumbai.matic.today`,
             // url: `https://rpc-mumbai.maticvigil.com/v1/${process.env.MATIC_APIKEY}`,
             // url: `https://matic-mumbai.chainstacklabs.com/`,
-            gasPrice: 3e9,
+            // gasPrice: 3e9,
+            gasPrice: 1e9,
             accounts: {
                 mnemonic: mnemonic.testnet,
                 initialIndex: 0,
@@ -202,11 +212,13 @@ module.exports = {
         deployer: {
           default: 0,
           42: '0xb9aAfbc209000A237ef4E52caEB598CF2f3EA4EA', // kovan account 1
+          80001: '0xb9aAfbc209000A237ef4E52caEB598CF2f3EA4EA', // mumbai account 1
         },
         protocolOwner: {
           default: 1,
           1: '0x0Ca678b984186b0117501C00d4A6B4F8F342D06D', // IONX Gnosis Multisig
           42: '0xBe376c5e625Df9f4D34e72e139c5b0eAa8FeDCfe', // kovan account 2
+          80001: '0xBe376c5e625Df9f4D34e72e139c5b0eAa8FeDCfe', // mumbai account 2
         },
         initialMinter: {
           default: 2,
@@ -228,19 +240,29 @@ module.exports = {
           4: '0x1337c0d31337c0D31337C0d31337c0d31337C0d3', // rinkeby
           42: '0x1337c0d31337c0D31337C0d31337c0d31337C0d3', // kovan
           137: '0x1337c0d31337c0D31337C0d31337c0d31337C0d3', // Polygon L2 Mainnet
-          80001: '0x1337c0d31337c0D31337C0d31337c0d31337C0d3', // Polygon L2 Testnet - Mumbai
+          80001: '0x3Aa21434239E07bc0216D0725adb1E0030Ee43C7', // Polygon L2 Testnet - Mumbai
         }
     },
-    watcher: {
-      compilation: {
-        tasks: ["compile"],
-        files: ["./contracts"],
-        verbose: true,
+    accounts: [
+      {
+        privateKey: 'a39ec3fb48bd6730805c53f1cdf87cb0047549fd13eceb1288d0354a621c63f4', // brave account 1
+        balance: '10000000000000000000000'
       },
-      test: {
-        tasks: [{ command: 'test', params: { testFiles: ['{path}'] } }],
-        files: ['./test/**/*'],
-        verbose: true
-      }
+      {
+        privateKey: 'e77968d4747c489b4ab89c2cf93f323b504c161ca0c6314c1e848ca6ee379ece', // brave account 2
+        balance: '10000000000000000000000'
+      },
+    ],
+    watcher: {
+      // compilation: {
+      //   tasks: ["compile"],
+      //   files: ["./contracts"],
+      //   verbose: true,
+      // },
+      // test: {
+      //   tasks: [{ command: 'test', params: { testFiles: ['{path}'] } }],
+      //   files: ['./test/**/*'],
+      //   verbose: true
+      // }
     },
 };

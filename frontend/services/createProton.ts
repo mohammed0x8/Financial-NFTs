@@ -29,13 +29,14 @@ export async function createProton(address: string, provider: Web3Provider, name
     try {
         /* first, upload to IPFS */
         const data = JSON.stringify({
+            name,
             description,
             image: fileUrl,
         });
-        // const added = await client.add(data);
-        // const url = `https://ipfs.infura.io/ipfs/${added.path}`;
+        const added = await client.add(data);
+        const url = `https://ipfs.infura.io/ipfs/${added.path}`;
         // todo: remove dev mode
-        const url = "https://ipfs.infura.io/ipfs/QmURfH4SppoP4ypXYgCnUJkuneaRNjRYcJxQG4eEKsrq3W";
+        // const url = "https://ipfs.infura.io/ipfs/QmURfH4SppoP4ypXYgCnUJkuneaRNjRYcJxQG4eEKsrq3W";
         console.log('creating sale: ', url, price, address);
         /* after file is uploaded to nftStorage, pass the URL to save it on blockchain */
         createProtonForSale(url, price, address, provider);
@@ -51,14 +52,7 @@ async function createProtonForSale(url: string, price: string, address: string, 
     console.log('create post 1', url, price, address);
     /* next, create the item */
     const protonContract = new ethers.Contract(PROTON_ADDRESS, Proton.abi, signer);
-    /*
-        0	creator	address	0x7b86F576669f8d20a8244dABEFc65b31d7dEB3f2
-        1	receiver	address	0x7b86F576669f8d20a8244dABEFc65b31d7dEB3f2
-        2	tokenMetaUri	string	https://ipfs.infura.io/ipfs/QmYEe8aSWotr8TVk6XLE7nXH1rzDLRA2uGFKqCLZusZQZ8
-        3	annuityPercent	uint256	600
-        4	royaltiesPercent	uint256	300
-        5	salePrice	uint256	0
-    */
+    
    console.log("protonContract: ", protonContract);
     let transaction = await protonContract.createProtonForSale(
         address,

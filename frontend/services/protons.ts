@@ -11,8 +11,11 @@ export const getProtonTokenURIs = async (provider: any) => {
     // totalSupply tokenByIndex tokenURI
     const totalSupply = await protonContract.totalSupply();
     const tokenURIs = [];
+    console.log(`totalSupply: ${totalSupply}`)
+
     for(let i = 0; i < totalSupply; i++) {
         const tokenId = await protonContract.tokenByIndex(i);
+        console.log(`tokenId: ${tokenId} index: ${i}`)
         tokenURIs.push(await protonContract.tokenURI(tokenId));
     }
 

@@ -19,24 +19,33 @@ import {
         <LinkBox cursor="pointer">
           <NextLink href="/" passHref={true}>
             <Flex align="center">
-              {/* <Image
+              <Image
                 borderRadius="12px"
                 mr="4"
                 src="/images/logos/logo.png"
-                width="40px"
                 height="40px"
-              /> */}
+              />
               {isMobile ? (
                 ""
               ) : (
-                <Text color={"white"} fontWeight="bold" fontSize="2xl" >
-                  Heard of Cows
+                <Text fontWeight="bold" fontSize="2xl" color="brand.900">
+                  Defi Molecules
                 </Text>
               )}
             </Flex>
           </NextLink>
         </LinkBox>
         <Spacer />
+        <Spacer />
+        <Box mr={4}>
+          <LinkBox>
+            <NextLink href="/proton" passHref={true}>
+              <Button bg="white" color="brand.400">
+                Mint
+              </Button>
+            </NextLink>
+          </LinkBox>
+        </Box>
         <Box>
           <Wallet />
         </Box>
