@@ -46,6 +46,15 @@ import {
             </NextLink>
           </LinkBox>
         </Box>
+        <Box mr={4}>
+          <LinkBox>
+            <NextLink href="/analytics" passHref={true}>
+              <Button bg="white" color="brand.400">
+                Analytics
+              </Button>
+            </NextLink>
+          </LinkBox>
+        </Box>
         <Box>
           <Wallet />
         </Box>
