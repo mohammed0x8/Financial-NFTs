@@ -206,18 +206,20 @@ module.exports = {
         'VestingClaim5',
         'VestingClaim6',
         'VestingClaim7',
+        'ERC4626SmartWallet',
+        'ERC4626SmartWalletManager'
       ],
     },
     namedAccounts: {
         deployer: {
           default: 0,
-          42: '0xb9aAfbc209000A237ef4E52caEB598CF2f3EA4EA', // kovan account 1
+          42: '0x3db79f7AEaE37b9Ab8548b42f94F1f36cbaae5a7', // kovan account 1
           80001: '0xb9aAfbc209000A237ef4E52caEB598CF2f3EA4EA', // mumbai account 1
         },
         protocolOwner: {
           default: 1,
           1: '0x0Ca678b984186b0117501C00d4A6B4F8F342D06D', // IONX Gnosis Multisig
-          42: '0xBe376c5e625Df9f4D34e72e139c5b0eAa8FeDCfe', // kovan account 2
+          42: '0x3db79f7AEaE37b9Ab8548b42f94F1f36cbaae5a7', // kovan account 2
           80001: '0xBe376c5e625Df9f4D34e72e139c5b0eAa8FeDCfe', // mumbai account 2
         },
         initialMinter: {
@@ -238,7 +240,7 @@ module.exports = {
           1: '0x1337c0d31337c0D31337C0d31337c0d31337C0d3', // mainnet
           3: '0x1337c0d31337c0D31337C0d31337c0d31337C0d3', // ropsten
           4: '0x1337c0d31337c0D31337C0d31337c0d31337C0d3', // rinkeby
-          42: '0x1337c0d31337c0D31337C0d31337c0d31337C0d3', // kovan
+          42: '0x3db79f7AEaE37b9Ab8548b42f94F1f36cbaae5a7', // kovan
           137: '0x1337c0d31337c0D31337C0d31337c0d31337C0d3', // Polygon L2 Mainnet
           80001: '0x3Aa21434239E07bc0216D0725adb1E0030Ee43C7', // Polygon L2 Testnet - Mumbai
         }
