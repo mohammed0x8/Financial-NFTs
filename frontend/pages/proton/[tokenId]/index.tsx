@@ -107,7 +107,7 @@ const Proton: NextPage = (props: Props) => {
                             <Flex flexDirection="row">
                                 {ENERGIZE_STRATEGIES.map((elem: any) => {
                                     return (
-                                        <Button bg={elem.name === strategy.name ? 'brand.400' : 'pink.100'} m="4" p="4" onClick={() => setStrategy(elem)} cursor="pointer">
+                                        <Button key={elem.name} bg={elem.name === strategy.name ? 'brand.400' : 'pink.100'} m="4" p="4" onClick={() => setStrategy(elem)} cursor="pointer">
                                             <Text fontWeight="bold">{elem.name}</Text>
                                         </Button>
                                     )

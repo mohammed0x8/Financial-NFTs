@@ -129,12 +129,12 @@ const CreateForm = (props: Props) => {
                                 p="4"
                             />
                         </Box>
-                        <Slider aria-label='slider-ex-1' defaultValue={30}  onChange={(val) => setSliderValue(val)}>
+                        {/* <Slider aria-label='slider-ex-1' defaultValue={30}  onChange={(val) => setSliderValue(val)}>
                             <SliderTrack>
                                 <SliderFilledTrack />
                             </SliderTrack>
                             <SliderThumb />
-                        </Slider>
+                        </Slider> */}
                         <Box mb={4}>
                             <input
                                 type="file"

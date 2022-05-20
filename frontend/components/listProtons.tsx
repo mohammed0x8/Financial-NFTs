@@ -26,7 +26,7 @@ const ListProtons = () => {
         <Box>
             <Flex justify={"center"} align={"center"} direction={"column"}>
                 {tokenURIs.map((tokenURI: any, i: number) => (
-                    <Proton tokenId={tokenIds[i]} tokenURI={tokenURI} />
+                    <Proton key={tokenIds[i]} tokenId={tokenIds[i]} tokenURI={tokenURI} />
                 ))}
             </Flex>
         </Box>
