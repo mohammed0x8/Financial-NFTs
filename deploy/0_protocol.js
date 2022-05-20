@@ -40,46 +40,56 @@ module.exports = async (hre) => {
     //
 
     log('  Deploying Universe...');
-    const Universe = await ethers.getContractFactory('Universe');
-    const UniverseInstance = await upgrades.deployProxy(Universe, []);
-    const universe = await UniverseInstance.deployed();
+    // const Universe = await ethers.getContractFactory('Universe');
+    // const UniverseInstance = await upgrades.deployProxy(Universe, []);
+    // const universe = await UniverseInstance.deployed();
+    const universe = {
+      address: '0xFE29665A20902D6a428B5fc8bC387aE7fDA8ec60',
+    }
     deployData['Universe'] = {
       abi: getContractAbi('Universe'),
       address: universe.address,
-      deployTransaction: universe.deployTransaction,
+      // deployTransaction: universe.deployTransaction,
     }
     saveDeploymentData(chainId, deployData);
     log('  - Universe:         ', universe.address);
-    log('     - Block:         ', universe.deployTransaction.blockNumber);
-    log('     - Gas Cost:      ', getTxGasCost({ deployTransaction: universe.deployTransaction }));
+    // log('     - Block:         ', universe.deployTransaction.blockNumber);
+    // log('     - Gas Cost:      ', getTxGasCost({ deployTransaction: universe.deployTransaction }));
 
     await log('  Deploying ChargedState...')(alchemyTimeout);
-    const ChargedState = await ethers.getContractFactory('ChargedState');
-    const ChargedStateInstance = await upgrades.deployProxy(ChargedState, [deployer]);
-    const chargedState = await ChargedStateInstance.deployed();
+    // const ChargedState = await ethers.getContractFactory('ChargedState');
+    // const ChargedStateInstance = await upgrades.deployProxy(ChargedState, [deployer]);
+    // const chargedState = await ChargedStateInstance.deployed();
+    const chargedState = {
+      address: '0xAA9dfB0B86257340AcF5534BF2e9782146380446',
+    }
     deployData['ChargedState'] = {
       abi: getContractAbi('ChargedState'),
       address: chargedState.address,
-      deployTransaction: chargedState.deployTransaction,
+      // deployTransaction: chargedState.deployTransaction,
     }
     saveDeploymentData(chainId, deployData);
     log('  - ChargedState:     ', chargedState.address);
-    log('     - Block:         ', chargedState.deployTransaction.blockNumber);
-    log('     - Gas Cost:      ', getTxGasCost({ deployTransaction: chargedState.deployTransaction }));
+    // log('     - Block:         ', chargedState.deployTransaction.blockNumber);
+    // log('     - Gas Cost:      ', getTxGasCost({ deployTransaction: chargedState.deployTransaction }));
 
     await log('  Deploying ChargedSettings...')(alchemyTimeout);
-    const ChargedSettings = await ethers.getContractFactory('ChargedSettings');
-    const ChargedSettingsInstance = await upgrades.deployProxy(ChargedSettings, [deployer]);
-    const chargedSettings = await ChargedSettingsInstance.deployed();
+    // const ChargedSettings = await ethers.getContractFactory('ChargedSettings');
+    // const ChargedSettingsInstance = await upgrades.deployProxy(ChargedSettings, [deployer]);
+    // const chargedSettings = await ChargedSettingsInstance.deployed();
+    const chargedSettings = {
+      address: '0x8b734C7263386c4a9077C4234Bb147c519aA8227',
+    }
     deployData['ChargedSettings'] = {
       abi: getContractAbi('ChargedSettings'),
       address: chargedSettings.address,
-      deployTransaction: chargedSettings.deployTransaction,
+      // deployTransaction: chargedSettings.deployTransaction,
     }
+    
     saveDeploymentData(chainId, deployData);
     log('  - ChargedSettings:  ', chargedSettings.address);
-    log('     - Block:         ', chargedSettings.deployTransaction.blockNumber);
-    log('     - Gas Cost:      ', getTxGasCost({ deployTransaction: chargedSettings.deployTransaction }));
+    // log('     - Block:         ', chargedSettings.deployTransaction.blockNumber);
+    // log('     - Gas Cost:      ', getTxGasCost({ deployTransaction: chargedSettings.deployTransaction }));
 
     await log('  Deploying ChargedManagers...')(alchemyTimeout);
     const ChargedManagers = await ethers.getContractFactory('ChargedManagers');

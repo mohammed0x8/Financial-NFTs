@@ -215,12 +215,14 @@ module.exports = {
           default: 0,
           42: '0x3db79f7AEaE37b9Ab8548b42f94F1f36cbaae5a7', // kovan account 1
           80001: '0xb9aAfbc209000A237ef4E52caEB598CF2f3EA4EA', // mumbai account 1
+          137: '0xAC950A2C4eF5cAa35D3453F3CB8d76b40E510Bee' // polygon mainnet
         },
         protocolOwner: {
           default: 1,
           1: '0x0Ca678b984186b0117501C00d4A6B4F8F342D06D', // IONX Gnosis Multisig
           42: '0x3db79f7AEaE37b9Ab8548b42f94F1f36cbaae5a7', // kovan account 2
           80001: '0xBe376c5e625Df9f4D34e72e139c5b0eAa8FeDCfe', // mumbai account 2
+          137: '0x276450B62CF650E48D556340249EB6F33708eEC0' // polygon mainnet
         },
         initialMinter: {
           default: 2,
@@ -243,28 +245,20 @@ module.exports = {
           42: '0x3db79f7AEaE37b9Ab8548b42f94F1f36cbaae5a7', // kovan
           137: '0x1337c0d31337c0D31337C0d31337c0d31337C0d3', // Polygon L2 Mainnet
           80001: '0x3Aa21434239E07bc0216D0725adb1E0030Ee43C7', // Polygon L2 Testnet - Mumbai
+          137: '0xc171229cCBa5e35d2f97D2Fc629e5Eca52A5cF5F' // polygon mainnet
         }
     },
-    accounts: [
-      {
-        privateKey: 'a39ec3fb48bd6730805c53f1cdf87cb0047549fd13eceb1288d0354a621c63f4', // brave account 1
-        balance: '10000000000000000000000'
-      },
-      {
-        privateKey: 'e77968d4747c489b4ab89c2cf93f323b504c161ca0c6314c1e848ca6ee379ece', // brave account 2
-        balance: '10000000000000000000000'
-      },
-    ],
+    accounts: [],
     watcher: {
-      // compilation: {
-      //   tasks: ["compile"],
-      //   files: ["./contracts"],
-      //   verbose: true,
-      // },
-      // test: {
-      //   tasks: [{ command: 'test', params: { testFiles: ['{path}'] } }],
-      //   files: ['./test/**/*'],
-      //   verbose: true
-      // }
+      compilation: {
+        tasks: ["compile"],
+        files: ["./contracts"],
+        verbose: true,
+      },
+      test: {
+        tasks: [{ command: 'test', params: { testFiles: ['{path}'] } }],
+        files: ['./test/**/*'],
+        verbose: true
+      }
     },
 };
