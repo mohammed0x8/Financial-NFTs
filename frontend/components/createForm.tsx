@@ -7,6 +7,11 @@ import {
     Box,
     Image,
     Button,
+    Slider,
+    SliderTrack,
+    SliderFilledTrack,
+    SliderThumb,
+    SliderMark,
 } from '@chakra-ui/react';
 import { useWeb3React } from '@web3-react/core';
 import { uploadImageToIPFS, createProton } from '../services/createProton';
@@ -124,6 +129,12 @@ const CreateForm = (props: Props) => {
                                 p="4"
                             />
                         </Box>
+                        <Slider aria-label='slider-ex-1' defaultValue={30}  onChange={(val) => setSliderValue(val)}>
+                            <SliderTrack>
+                                <SliderFilledTrack />
+                            </SliderTrack>
+                            <SliderThumb />
+                        </Slider>
                         <Box mb={4}>
                             <input
                                 type="file"

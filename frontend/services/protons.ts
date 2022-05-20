@@ -1,12 +1,12 @@
 import Proton from '../deployments/hardhat/Proton.json';
 import { ethers } from 'ethers';
+import ProtonB from '../deployments/polygon/ProtonB.json'
 
-const PROTON_ADDRESS = process.env.NEXT_PUBLIC_PROTON_ADDRESS || "";
 
 export const getProtonTokens = async (provider: any) => {
     console.log('get protons ', provider);
 
-    const protonContract = new ethers.Contract(PROTON_ADDRESS, Proton.abi, provider);
+    const protonContract = new ethers.Contract(ProtonB.address, ProtonB.abi, provider);
 
     // totalSupply tokenByIndex tokenURI
     const totalSupply = await protonContract.totalSupply();

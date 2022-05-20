@@ -49,7 +49,7 @@ const Proton = ({ tokenURI, tokenId }: Props) => {
         )
     }
     return (
-        <Box onClick={navigateToProton} cursor="pointer">
+        <Box maxWidth="600px" borderRadius="12" borderColor="brand.200" borderSize="1px" onClick={navigateToProton} cursor="pointer">
             <Flex direction="column" align="center">
                 <Text fontSize="4xl" fontWeight="bold" mb={3}>{name}</Text>
                 <Text fontSize="xl" mb={3}>{description}</Text>

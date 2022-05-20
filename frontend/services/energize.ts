@@ -2,21 +2,20 @@ import { ethers } from 'ethers'
 import { Web3Provider } from '@ethersproject/providers'
 import web3 from 'web3';
 
-import ChargedParticles from '../deployments/hardhat/ChargedParticles.json';
 import ERC20 from '../abi/ERC20.json';
 import { USDC_ADDRESS } from '../utils/globals'
-
-const CHARGED_PARTICLES_ADDRESS = process.env.NEXT_PUBLIC_CHARGED_PARTICLES_ADDRESS || "";
-const PROTON_ADDRESS = process.env.NEXT_PUBLIC_PROTON_ADDRESS || "";
+import ChargedParticles from '../deployments/polygon/ChargedParticles.json'
+import ProtonB from '../deployments/polygon/ProtonB.json'
 
 export const approveUSDC = async (provider: any, amount: number) => {
-    console.log('approveUSDC ', provider);
+    console.log('approveUSDC ', amount);
     const signer = provider.getSigner();
+    debugger;
 
-    const usdcContract = new ethers.Contract(USDC_ADDRESS, ERC20, signer);
+    const usdcContract = new ethers.Contract("0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48", ERC20, signer);
 
     // totalSupply tokenByIndex tokenURI
-    const response = await usdcContract.approve(CHARGED_PARTICLES_ADDRESS, web3.utils.toWei('' + amount));
+    const response = await usdcContract.approve(ChargedParticles.address, 1000000);
     console.log(`response: ${JSON.stringify(response)}`)
 }
 
@@ -38,11 +37,12 @@ export const energizeParticle = async (
         );
         
     
-        const CPContract = new ethers.Contract(CHARGED_PARTICLES_ADDRESS, ChargedParticles.abi, signer);
+        const CPContract = new ethers.Contract(ChargedParticles.address, ChargedParticles.abi, signer);
     
         // totalSupply tokenByIndex tokenURI
+        debugger;
         const response = await CPContract.energizeParticle(
-            PROTON_ADDRESS,
+            ProtonB.address,
             tokenId,
             walletManagerId,
             assetToken,
@@ -51,39 +51,3 @@ export const energizeParticle = async (
         );
         console.log(`response: ${JSON.stringify(response)}`)
 }
-
-
-//     Function: energizeParticle(address contractAddress, uint256 tokenId, string walletManagerId, address assetToken, uint256 assetAmount, address referrer)
-// #	Name	Type	Data
-// 0	contractAddress	address	0x1CeFb0E1EC36c7971bed1D64291fc16a145F35DC
-// 1	tokenId	uint256	361
-// 2	walletManagerId	string	aave.B
-// 3	assetToken	address	0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174
-// 4	assetAmount	uint256	10 000000
-// 5	referrer	address	0x0000000000000000000000000000000000000000
-
-// energizeParticles = async() =>  {
-
-//     await CPcontracts.methods.energizeParticle
-//     (
-//       "0x517fEfB53b58Ec8764ca885731Db20Ca2dcac7b7",
-//       tokenId.value,
-//      "generic",
-//      ERC20Token.value,
-//      tokenamount.value,
-//      "0x0000000000000000000000000000000000000000"
-//     ).send({
-//             from : accounts[0]
-//             // gas:"600000",
-//             // value: Web3.utils.toWei('1')
-//         }).once("receipt", (reciept) => {
-//             console.log(reciept);
-//             let data = JSON.stringify(reciept.events.ProtocolFeesCollected.returnValues.assetToken);
-//       document.getElementById('112').innerHTML = data;
-//         });
-//   };
-//   ERC20Token = document.getElementById("ERC20Token");
-//   const tokenId = document.getElementById("tokenId");
-//   const tokenamount = document.getElementById("tokenamount");
-//   const energizeParticle1 = document.getElementById("btnenergize");
-//   energizeParticle1.onclick = energizeParticles;

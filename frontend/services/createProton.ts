@@ -1,15 +1,12 @@
 import { Web3Provider } from '@ethersproject/providers'
-import { create as ipfsHttpClient } from 'ipfs-http-client';
-import { ethers } from 'ethers';
+import { create as ipfsHttpClient } from 'ipfs-http-client'
+import { ethers } from 'ethers'
+import web3 from 'web3'
 
-import ChargedParticles from '../deployments/hardhat/ChargedParticles.json';
-import Proton from '../deployments/hardhat/Proton.json';
+import ProtonB from '../deployments/polygon/ProtonB.json'
 
 // @ts-ignore
 const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0');
-
-const CHARGED_PARTICLES_ADDRESS = process.env.NEXT_PUBLIC_CHARGED_PARTICLES_ADDRESS || "";
-const PROTON_ADDRESS = process.env.NEXT_PUBLIC_PROTON_ADDRESS || "";
 
 export async function uploadImageToIPFS(file: any): Promise<string> {
 
@@ -51,17 +48,24 @@ async function createProtonForSale(url: string, price: string, address: string, 
 
     console.log('create post 1', url, price, address);
     /* next, create the item */
-    const protonContract = new ethers.Contract(PROTON_ADDRESS, Proton.abi, signer);
+    const protonContract = new ethers.Contract(ProtonB.address, ProtonB.abi, signer);
     
    console.log("protonContract: ", protonContract);
-    let transaction = await protonContract.createProtonForSale(
+    let transaction = await protonContract['createProtonForSale(address,address,string,uint256,uint256,uint256)'](
         address,
         address,
         url,
-        0,
-        0,
-        price
+        600,
+        300,
+        web3.utils.toWei(price)
     );
+
+    //     0	creator	address	0x7b86F576669f8d20a8244dABEFc65b31d7dEB3f2
+        // 1	receiver	address	0x7b86F576669f8d20a8244dABEFc65b31d7dEB3f2
+        // 2	tokenMetaUri	string	https://ipfs.infura.io/ipfs/QmYEe8aSWotr8TVk6XLE7nXH1rzDLRA2uGFKqCLZusZQZ8
+        // 3	annuityPercent	uint256	600
+        // 4	royaltiesPercent	uint256	300
+        // 5	salePrice	uint256	0
     const tx = await transaction.wait();
     console.log("tx:", tx);
     if (tx.events.length < 1) {
