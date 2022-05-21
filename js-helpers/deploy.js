@@ -130,6 +130,15 @@ const presets = {
         80001: '0x178113104fEcbcD7fF8669a0150721e231F0FD4B', // polygon testnet
         31337: '0xB53C1a33016B2DC2fF3653530bfF1848a515c8c5', // Hardhat - Forked Mainnet
       }
+    },
+    v3: {
+      lendingPoolProvider: {
+        1: '', // mainnet
+        42: '0x651b8A8cA545b251a8f49B57D5838Da0a8DFbEF9', // kovan
+        137: '0x5343b5bA672Ae99d627A1C87866b8E53F47Db2E6', // polygon mainnet
+        80001: '', // polygon testnet
+        31337: '', // Hardhat - Forked Mainnet
+      }
     }
   },
   Ionx: {
