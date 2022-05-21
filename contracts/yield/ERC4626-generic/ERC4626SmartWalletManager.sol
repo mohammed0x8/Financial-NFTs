@@ -219,8 +219,8 @@ contract ERC4626WalletManager is WalletManagerBase {
     address wallet = _wallets[uuid];
     require(wallet != address(0x0), "AWM:E-403");
 
-    // Release Principal + Interest
-    principalAmount = ERC4626SmartWallet(wallet).getPrincipal(assetToken);
+    // // Release Principal + Interest
+    // principalAmount = ERC4626SmartWallet(wallet).getPrincipal(assetToken);
     (creatorAmount, receiverAmount) = ERC4626SmartWallet(wallet).withdraw(receiver, ZERO_ADDRESS, ZERO, assetToken);
 
     // Log Event

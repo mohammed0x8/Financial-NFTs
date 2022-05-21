@@ -35,6 +35,7 @@ contract ERC4626SmartWallet is SmartWalletBaseB {
   using SafeERC20 for IERC20;
 
   mapping (address => address) internal _assetYieldTokens;
+  mapping (address => address) internal _assetTokenToYield;
   mapping (address => uint256) internal _assetPrincipalUnderlying;
 
   uint256 public ZERO;
@@ -67,7 +68,7 @@ contract ERC4626SmartWallet is SmartWalletBaseB {
   function getPrincipal(address assetToken) external override returns (uint256) {
     return _getPrincipal(assetToken);
   }
-  function _getPrincipalUnderlying(address assetToken) internal internal view returns (uint256){
+  function _getPrincipalUnderlying(address assetToken) internal view returns (uint256){
     return _assetPrincipalUnderlying[assetToken];
   } 
   function getInterest(address assetToken, uint256 /**creatorPct*/) external override returns (uint256 creatorInterest, uint256 ownerInterest) {
@@ -203,25 +204,26 @@ contract ERC4626SmartWallet is SmartWalletBaseB {
     internal
     returns (uint256 creatorAmount, uint256 receiverAmount)
   {
-    uint assetBalance = _getPrincipal(assetToken);
+    address _assetToken = _assetTokenToYield[assetToken];
+    uint256 _assetAmount = convertToShares(_assetToken, assetAmount);
 
-    uint256 underlyingPrincipal = _getPrincipalUnderlying(assetToken);
-    (, uint256 ownerInterest) = _getInterest(assetToken, ZERO);
+    uint assetBalance = _getPrincipal(_assetToken);
 
-    if(assetAmount >= assetBalance){
-        assetAmount = assetBalance;
+    uint256 underlyingPrincipal = _getPrincipalUnderlying(_assetToken);
+    (, uint256 ownerInterest) = _getInterest(_assetToken, ZERO);
+
+    if(_assetAmount >= assetBalance){
+        _assetAmount = assetBalance;
         _assetPrincipalBalance[assetToken] = 0;
         _assetPrincipalUnderlying[assetToken] = 0;
     }
     else {
-        uint256 underlyingAssetAmount  = convertToAsset(assetToken, assetAmount);
-        underlyingAssetAmount = underlyingAssetAmount.sub(ownerInterest);
-        _assetPrincipalBalance[assetToken] = _assetPrincipalBalance[assetToken].sub(assetAmount);
-        _assetPrincipalUnderlying[assetAmount] = _assetPrincipalUnderlying[assetToken].sub(underlyingAssetAmount);
+        uint256 underlyingAssetAmount = assetAmount.sub(ownerInterest);
+        _assetPrincipalBalance[assetToken] = _assetPrincipalBalance[assetToken].sub(_assetAmount);
+        _assetPrincipalUnderlying[assetToken] = _assetPrincipalUnderlying[assetToken].sub(underlyingAssetAmount);
 
     }
-    IERC4626(assetToken).withdraw(assetAmount, receiver, address(this));
-
+    IERC4626(_assetToken).redeem(_assetAmount, receiver, address(this));
   }
 
 
@@ -230,8 +232,8 @@ contract ERC4626SmartWallet is SmartWalletBaseB {
     return _getPrincipal(assetToken);
   }
 
-    function _getInterest(address assetToken, uint256 /**creatorPct*/) internal view returns (uint256, uint256 ) {
-    uint256 principalUnderlying = _assetPrincipalUnderlying(assetToken);
+    function _getInterest(address assetToken, uint256 /**creatorPct*/) internal view returns (uint256, uint256 ownerInterest) {
+    uint256 principalUnderlying = _assetPrincipalUnderlying[assetToken];
     uint256 principal = _getPrincipal(assetToken);
     uint256 total = convertToAsset(assetToken, principal);
     uint256 ownerInterest = total.sub(principalUnderlying);
@@ -243,6 +245,7 @@ contract ERC4626SmartWallet is SmartWalletBaseB {
       _assetTokens.add(assetToken);
       address underlyingTokenAddress = IERC4626(assetToken).asset();
       _assetYieldTokens[assetToken] = underlyingTokenAddress;
+      _assetTokenToYield[underlyingTokenAddress] = assetToken;
     }
   }
 
