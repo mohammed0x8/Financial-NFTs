@@ -207,7 +207,10 @@ module.exports = {
         'VestingClaim6',
         'VestingClaim7',
         'ERC4626SmartWallet',
-        'ERC4626SmartWalletManager'
+        'ERC4626SmartWalletManager',
+        'AaveV3SmartWallet',
+        'AaveV3WalletManager',
+        'AaveBridgeV3'
       ],
     },
     namedAccounts: {
