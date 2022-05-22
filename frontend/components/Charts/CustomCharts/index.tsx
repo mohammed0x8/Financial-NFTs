@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import Charts from "../Charts";
 import useIsMounted from "../../../utils/hooks/isMounted";
+import Charts from "../Charts";
 
 export default function CustomCharts() {
   const isMounted = useIsMounted();
@@ -71,8 +71,15 @@ export default function CustomCharts() {
     },
   ];
 
+  // const [data, setData ] = React.useState<any>([]);
+  // // useEffect(() => {
+  // //   fetch("https://f-nfts.herokuapp.com/weighted_portfolio")
+  // //     .then((response) => response.json())
+  // //     .then((data) => setData([[], ...data]));
+  // // }, []);
   async function loadDataCharts() {
     // TODO -> data shenaningans
+    
     const MockData = [
       {
         btc_only: 171205.72,

@@ -1,14 +1,19 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
 import BaseLabels from "./BaseLabel";
-import BaseChart from "./BaseChart";
+import dynamic from "next/dynamic";
+const BaseChart = dynamic(() => import("./BaseChart"), {
+  ssr: false
+});
+
+
 import { DataSelector, TimeSelector } from "./Selectors";
 import { options, customDarkTheme, lightTheme, colors } from "../../utils/AnalyticsUtilities";
 
-const BeanChart = (props: any) => {
+const Chart = (props: any) => {
   const [from, setFrom] = React.useState<number>();
   const [fitAll, setFitAll] = React.useState<boolean>(false);
-
+  console.log('props', props);
 
   const setDateRange = (timeMode: string): void => {
     if (timeMode === "all") {
@@ -30,10 +35,11 @@ const BeanChart = (props: any) => {
 
   const n = !props.isMobile;
   const to = new Date().getTime() / 1000; // current timestamp
-  const useDataMode = props.data.length > 1;
+  console.log('props.data', props.data)
+  const useDataMode = props.data?.length > 1;
   const dataMode = useDataMode ? props.dataMode : "hr";
-  const data = dataMode === "hr" ? [...props.data[0]] : [...props.data[1]];
-
+  // const data = dataMode === "hr" ? [...props.data[0]] : [...props.data[1]];
+  const data: any[] = [];
   if (data.length === 0) {
     return (
       <Box
@@ -90,4 +96,4 @@ const BeanChart = (props: any) => {
     </Box>
   );
 };
-export default BeanChart;
+export default Chart;

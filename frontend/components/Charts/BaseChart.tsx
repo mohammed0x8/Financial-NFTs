@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
-import { createChart, IChartApi, MouseEventHandler, TimeRangeChangeEventHandler } from 'lightweight-charts';
 import equal from 'fast-deep-equal';
 import usePrevious from '../../utils/hooks/usePrevious';
 import { mergeDeep } from '../../utils/AnalyticsUtilities';
+
 
 const BaseChart = (props: any) => {
     const {
