@@ -3,17 +3,20 @@ import { Box } from "@chakra-ui/react";
 import BaseLabels from "./BaseLabel";
 import dynamic from "next/dynamic";
 const BaseChart = dynamic(() => import("./BaseChart"), {
-  ssr: false
+  ssr: false,
 });
 
-
 import { DataSelector, TimeSelector } from "./Selectors";
-import { options, customDarkTheme, lightTheme, colors } from "../../utils/AnalyticsUtilities";
+import {
+  options,
+  customDarkTheme,
+  lightTheme,
+  colors,
+} from "../../utils/AnalyticsUtilities";
 
 const Chart = (props: any) => {
   const [from, setFrom] = React.useState<number>();
   const [fitAll, setFitAll] = React.useState<boolean>(false);
-  console.log('props', props);
 
   const setDateRange = (timeMode: string): void => {
     if (timeMode === "all") {
@@ -35,12 +38,55 @@ const Chart = (props: any) => {
 
   const n = !props.isMobile;
   const to = new Date().getTime() / 1000; // current timestamp
-  console.log('props.data', props.data)
   const useDataMode = props.data?.length > 1;
   const dataMode = useDataMode ? props.dataMode : "hr";
-  // const data = dataMode === "hr" ? [...props.data[0]] : [...props.data[1]];
-  const data: any[] = [];
-  if (data.length === 0) {
+  console.log('props', props);
+  const customData = props.charts[0]?.data || [];
+  const data = customData[0];
+  console.log("data11111111", data);
+
+  if (data !== [] || data.value?.length !== 0 ) {
+    return (
+      <Box
+        borderRadius="25px"
+        padding="10px"
+        paddingTop={n ? "30px" : "40px"}
+        position="relative"
+        height={n ? "370px" : "250px"}
+        backgroundColor="#c3c3c3"
+      >
+        {useDataMode ? (
+          <DataSelector
+            size={props.size}
+            isMobile={props.isMobile}
+            setValue={props.setDataMode}
+            value={dataMode}
+          />
+        ) : null}
+        <TimeSelector
+          size={props.size}
+          isMobile={props.isMobile}
+          setValue={props.setTimeMode}
+          value={props.timeMode}
+          dataMode={dataMode}
+        />
+        <hr style={{ marginTop: "20px" }} />
+        <BaseChart
+          {...props}
+          autoWidth
+          height={300}
+          options={options}
+          from={from}
+          to={to}
+          fitAll={fitAll}
+          colors={colors}
+          data={data}
+          backgroundTheme={{ customDarkTheme, lightTheme }}
+        />
+        <BaseLabels labels={["abc", "def"]} />
+      </Box>
+    );
+  } else {
     return (
       <Box
         borderRadius="25px"
@@ -54,46 +100,5 @@ const Chart = (props: any) => {
       </Box>
     );
   }
-
-  return (
-    <Box
-      borderRadius="25px"
-      padding="10px"
-      paddingTop={n ? "30px" : "40px"}
-      position="relative"
-      height={n ? "370px" : "250px"}
-      backgroundColor="#c3c3c3"
-    >
-      {useDataMode ? (
-        <DataSelector
-          size={props.size}
-          isMobile={props.isMobile}
-          setValue={props.setDataMode}
-          value={dataMode}
-        />
-      ) : null}
-      <TimeSelector
-        size={props.size}
-        isMobile={props.isMobile}
-        setValue={props.setTimeMode}
-        value={props.timeMode}
-        dataMode={dataMode}
-      />
-      <hr style={{ marginTop: "20px" }} />
-      <BaseChart
-        {...props}
-        autoWidth
-        height={300}
-        options={options}
-        from={from}
-        to={to}
-        fitAll={fitAll}
-        colors={colors}
-        data={data}
-        backgroundTheme={{ customDarkTheme, lightTheme }}
-      />
-      <BaseLabels labels={["abc", "def"]} />
-    </Box>
-  );
 };
 export default Chart;
