@@ -74,3 +74,6 @@ export default function CustomCharts() {
 
   return <Charts charts={charts} />;
 }
+
+
+// TODO -> IMPORT BASECHART, query data, for each row, create new serie, add to series, add to chart
